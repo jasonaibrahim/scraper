@@ -2,7 +2,7 @@ var http 	= 	require('http'),
 	https 	= 	require('https'),
 	url 	= 	require('url'), 
 	request = 	require('request'), 
-	Q 		=	require('q'),
+	Q 	=	require('q'),
 	cheerio = 	require('cheerio');
 
 Array.prototype.uniq = function() {
