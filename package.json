@@ -1,0 +1,34 @@
+{
+  "name": "scraper",
+  "version": "0.0.0",
+  "description": "From the Bay to LA, scraper will collect all of the images from the url you tell it to and return a list of the images that best represent the site.",
+  "main": "scraper.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jasonaibrahim/scraper.git"
+  },
+  "keywords": [
+    "scrape",
+    "thumbnails",
+    "images",
+    "facebook",
+    "twitter",
+    "thumbnail",
+    "image",
+    "scraper",
+    "web",
+    "crawler",
+    "image",
+    "web",
+    "oakland"
+  ],
+  "author": "jason ibrahim",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jasonaibrahim/scraper/issues"
+  },
+  "homepage": "https://github.com/jasonaibrahim/scraper"
+}
