@@ -16,10 +16,12 @@ Array.prototype.uniq = function() {
    }
    return arr;
 }
+
 function getProtocol(url) {
 	if(url.slice(0,5) == 'https') return https
 	if(url.slice(0,4) == 'http') return http
 }
+
 module.exports.Scraper = function() {
 	var _this = this;
 	this.extmatch = function(path) {
