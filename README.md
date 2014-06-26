@@ -1,2 +1,2 @@
 # Scraper
-![ScreenShot](../510.jpg)
+![ScreenShot](https://raw.githubusercontent.com/jasonaibrahim/scraper/master/raw/510.jpg)
