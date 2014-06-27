@@ -1,5 +1,5 @@
 {
-  "name": "scrapy",
+  "name": "scraper-js",
   "version": "0.0.1",
   "description": "From the Bay to LA, scrapy will collect all of the images from the url you tell it to and return a list of the images that best represent the site.",
   "main": "scraper.js",

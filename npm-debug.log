@@ -1,0 +1,132 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'publish' ]
+2 info using npm@1.4.9
+3 info using node@v0.10.28
+4 verbose node symlink C:\Program Files\nodejs\\node.exe
+5 verbose publish [ '.' ]
+6 verbose cache add [ '.', null ]
+7 verbose cache add name=undefined spec="." args=[".",null]
+8 verbose parsed url { protocol: null,
+8 verbose parsed url   slashes: null,
+8 verbose parsed url   auth: null,
+8 verbose parsed url   host: null,
+8 verbose parsed url   port: null,
+8 verbose parsed url   hostname: null,
+8 verbose parsed url   hash: null,
+8 verbose parsed url   search: null,
+8 verbose parsed url   query: null,
+8 verbose parsed url   pathname: '.',
+8 verbose parsed url   path: '.',
+8 verbose parsed url   href: '.' }
+9 silly lockFile 3a52ce78- .
+10 verbose lock . C:\Users\jibrahim\AppData\Roaming\npm-cache\3a52ce78-.lock
+11 verbose tar pack [ 'C:\\Users\\jibrahim\\AppData\\Local\\Temp\\npm-7232-msGK6XCJ\\1403905966818-0.7185351545922458\\tmp.tgz',
+11 verbose tar pack   '.' ]
+12 verbose tarball C:\Users\jibrahim\AppData\Local\Temp\npm-7232-msGK6XCJ\1403905966818-0.7185351545922458\tmp.tgz
+13 verbose folder .
+14 info prepublish scrapy@0.0.1
+15 silly lockFile 1f1177db-tar tar://.
+16 verbose lock tar://. C:\Users\jibrahim\AppData\Roaming\npm-cache\1f1177db-tar.lock
+17 silly lockFile 5011905f-66818-0-7185351545922458-tmp-tgz tar://C:\Users\jibrahim\AppData\Local\Temp\npm-7232-msGK6XCJ\1403905966818-0.7185351545922458\tmp.tgz
+18 verbose lock tar://C:\Users\jibrahim\AppData\Local\Temp\npm-7232-msGK6XCJ\1403905966818-0.7185351545922458\tmp.tgz C:\Users\jibrahim\AppData\Roaming\npm-cache\5011905f-66818-0-7185351545922458-tmp-tgz.lock
+19 silly lockFile 1f1177db-tar tar://.
+20 silly lockFile 1f1177db-tar tar://.
+21 silly lockFile 5011905f-66818-0-7185351545922458-tmp-tgz tar://C:\Users\jibrahim\AppData\Local\Temp\npm-7232-msGK6XCJ\1403905966818-0.7185351545922458\tmp.tgz
+22 silly lockFile 5011905f-66818-0-7185351545922458-tmp-tgz tar://C:\Users\jibrahim\AppData\Local\Temp\npm-7232-msGK6XCJ\1403905966818-0.7185351545922458\tmp.tgz
+23 verbose tar unpack C:\Users\jibrahim\AppData\Local\Temp\npm-7232-msGK6XCJ\1403905966818-0.7185351545922458\tmp.tgz
+24 silly lockFile a50d0cd1-g-npm-cache-scrapy-0-0-1-package tar://C:\Users\jibrahim\AppData\Roaming\npm-cache\scrapy\0.0.1\package
+25 verbose lock tar://C:\Users\jibrahim\AppData\Roaming\npm-cache\scrapy\0.0.1\package C:\Users\jibrahim\AppData\Roaming\npm-cache\a50d0cd1-g-npm-cache-scrapy-0-0-1-package.lock
+26 silly lockFile 5011905f-66818-0-7185351545922458-tmp-tgz tar://C:\Users\jibrahim\AppData\Local\Temp\npm-7232-msGK6XCJ\1403905966818-0.7185351545922458\tmp.tgz
+27 verbose lock tar://C:\Users\jibrahim\AppData\Local\Temp\npm-7232-msGK6XCJ\1403905966818-0.7185351545922458\tmp.tgz C:\Users\jibrahim\AppData\Roaming\npm-cache\5011905f-66818-0-7185351545922458-tmp-tgz.lock
+28 silly gunzTarPerm modes [ '755', '644' ]
+29 silly gunzTarPerm extractEntry package.json
+30 silly gunzTarPerm modified mode [ 'package.json', 438, 420 ]
+31 silly gunzTarPerm extractEntry .npmignore
+32 silly gunzTarPerm modified mode [ '.npmignore', 438, 420 ]
+33 silly gunzTarPerm extractEntry README.md
+34 silly gunzTarPerm modified mode [ 'README.md', 438, 420 ]
+35 silly gunzTarPerm extractEntry scraper.js
+36 silly gunzTarPerm modified mode [ 'scraper.js', 438, 420 ]
+37 silly gunzTarPerm extractEntry raw/510.jpg
+38 silly gunzTarPerm modified mode [ 'raw/510.jpg', 438, 420 ]
+39 silly lockFile a50d0cd1-g-npm-cache-scrapy-0-0-1-package tar://C:\Users\jibrahim\AppData\Roaming\npm-cache\scrapy\0.0.1\package
+40 silly lockFile a50d0cd1-g-npm-cache-scrapy-0-0-1-package tar://C:\Users\jibrahim\AppData\Roaming\npm-cache\scrapy\0.0.1\package
+41 silly lockFile 5011905f-66818-0-7185351545922458-tmp-tgz tar://C:\Users\jibrahim\AppData\Local\Temp\npm-7232-msGK6XCJ\1403905966818-0.7185351545922458\tmp.tgz
+42 silly lockFile 5011905f-66818-0-7185351545922458-tmp-tgz tar://C:\Users\jibrahim\AppData\Local\Temp\npm-7232-msGK6XCJ\1403905966818-0.7185351545922458\tmp.tgz
+43 silly lockFile 3a52ce78- .
+44 silly lockFile 3a52ce78- .
+45 silly publish { name: 'scrapy',
+45 silly publish   version: '0.0.1',
+45 silly publish   description: 'From the Bay to LA, scrapy will collect all of the images from the url you tell it to and return a list of the images that best represent the site.',
+45 silly publish   main: 'scraper.js',
+45 silly publish   scripts: { test: 'echo "Error: no test specified" && exit 1' },
+45 silly publish   repository:
+45 silly publish    { type: 'git',
+45 silly publish      url: 'git://github.com/jasonaibrahim/scraper.git' },
+45 silly publish   keywords:
+45 silly publish    [ 'scrape',
+45 silly publish      'thumbnails',
+45 silly publish      'images',
+45 silly publish      'facebook',
+45 silly publish      'twitter',
+45 silly publish      'thumbnail',
+45 silly publish      'image',
+45 silly publish      'scraper',
+45 silly publish      'web',
+45 silly publish      'crawler',
+45 silly publish      'image',
+45 silly publish      'web',
+45 silly publish      'oakland' ],
+45 silly publish   author: { name: 'jason ibrahim' },
+45 silly publish   license: 'MIT',
+45 silly publish   bugs: { url: 'https://github.com/jasonaibrahim/scraper/issues' },
+45 silly publish   homepage: 'https://github.com/jasonaibrahim/scraper',
+45 silly publish   readme: '# Scraper\r\n![ScreenShot](https://raw.githubusercontent.com/jasonaibrahim/scraper/master/raw/510.jpg)',
+45 silly publish   readmeFilename: 'README.md',
+45 silly publish   _id: 'scrapy@0.0.1',
+45 silly publish   _shasum: '83cf7911cbe8bf273575343af6583d969f97a97f',
+45 silly publish   _from: '.' }
+46 verbose url raw scrapy
+47 verbose url resolving [ 'https://registry.npmjs.org/', './scrapy' ]
+48 verbose url resolved https://registry.npmjs.org/scrapy
+49 info trying registry request attempt 1 at 14:52:47
+50 http PUT https://registry.npmjs.org/scrapy
+51 http 403 https://registry.npmjs.org/scrapy
+52 verbose headers { date: 'Fri, 27 Jun 2014 21:52:49 GMT',
+52 verbose headers   server: 'CouchDB/1.5.0 (Erlang OTP/R14B04)',
+52 verbose headers   'content-type': 'application/json',
+52 verbose headers   'cache-control': 'max-age=30',
+52 verbose headers   'content-length': '3010',
+52 verbose headers   'accept-ranges': 'bytes',
+52 verbose headers   via: '1.1 varnish',
+52 verbose headers   'x-served-by': 'cache-iad2131-IAD',
+52 verbose headers   'x-cache': 'MISS',
+52 verbose headers   'x-cache-hits': '0',
+52 verbose headers   'x-timer': 'S1403905967.758990,VS0,VE1840',
+52 verbose headers   'keep-alive': 'timeout=10, max=50',
+52 verbose headers   connection: 'Keep-Alive' }
+53 error publish Failed PUT 403
+54 error Error: forbidden cannot modify pre-existing version: 0.0.1
+54 error old={"name":"scrapy","version":"0.0.1","description":"Extract business name and phone from a YP business page","main":"index.js","directories":{"test":"test"},"scripts":{"test":"node_modules/.bin/tape test/*.js"},"repository":"","author":{"name":"Oren"},"license":"BSD","readmeFilename":"README.md","dependencies":{"cheerio":"~0.12.0"},"devDependencies":{"tape":"~1.0.4"},"readme":"# Scrapy \u000a\u000aa Module that scrape a business page on YP and return business name and phone\u000a\u000a## Example\u000a\u000a```js\u000avar scrape = require('./scrape.js');\u000a var url = 'http://www.yellowpages.com/west-monroe-la/mip/armstrong-cricket-farm-5032804?lid=5032804'\u000a\u000a scrape(url, function(err, data) {\u000a   if (err) {\u000a     console.error(err);\u000a   }\u000a\u000a//   console.log(data);  => { name: 'Armstrong Cricket Farm', phone: '(318)387-6000' }\u000a// });\u000a```\u000a\u000a## Methods\u000a\u000a### var scrape = require('scrape');\u000a\u000a```js\u000ascrape(url, cb);\u000a```\u000a\u000aGet business name and phone of a given `url`. `cb` is a callback.\u000a\u000a`cb(err, data)` fires with the scraped information.\u000a","_id":"scrapy@0.0.1","dist":{"shasum":"c96065224419e44d19173b35e3a9d1de0e4bbd82","tarball":"http://registry.npmjs.org/scrapy/-/scrapy-0.0.1.tgz"},"_from":".","_npmVersion":"1.2.18","_npmUser":{"name":"oren","email":"orengolan@gmail.com"},"maintainers":[{"name":"oren","email":"orengolan@gmail.com"}]}
+54 error new={"name":"scrapy","version":"0.0.1","description":"From the Bay to LA, scrapy will collect all of the images from the url you tell it to and return a list of the images that best represent the site.","main":"scraper.js","scripts":{"test":"echo \"Error: no test specified\" && exit 1"},"repository":{"type":"git","url":"git://github.com/jasonaibrahim/scraper.git"},"keywords":["scrape","thumbnails","images","facebook","twitter","thumbnail","image","scraper","web","crawler","image","web","oakland"],"author":{"name":"jason ibrahim"},"license":"MIT","bugs":{"url":"https://github.com/jasonaibrahim/scraper/issues"},"homepage":"https://github.com/jasonaibrahim/scraper","readme":"# Scraper\u000d\u000a![ScreenShot](https://raw.githubusercontent.com/jasonaibrahim/scraper/master/raw/510.jpg)","readmeFilename":"README.md","_id":"scrapy@0.0.1","_shasum":"83cf7911cbe8bf273575343af6583d969f97a97f","_from":".","_npmVersion":"1.4.9","_npmUser":{"name":"jasonaibrahim","email":"jasonaibrahim@gmail.com"},"maintainers":[{"name":"jasonaibrahim","email":"jasonaibrahim@gmail.com"}],"dist":{"shasum":"83cf7911cbe8bf273575343af6583d969f97a97f","tarball":"http://registry.npmjs.org/scrapy/-/scrapy-0.0.1.tgz"}}: scrapy
+54 error     at RegClient.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:273:14)
+54 error     at Request._callback (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:211:65)
+54 error     at Request.self.callback (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:123:22)
+54 error     at Request.EventEmitter.emit (events.js:98:17)
+54 error     at Request.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:893:14)
+54 error     at Request.EventEmitter.emit (events.js:117:20)
+54 error     at IncomingMessage.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:844:12)
+54 error     at IncomingMessage.EventEmitter.emit (events.js:117:20)
+54 error     at _stream_readable.js:919:16
+54 error     at process._tickCallback (node.js:419:13)
+55 error If you need help, you may report this *entire* log,
+55 error including the npm and node versions, at:
+55 error     <http://github.com/npm/npm/issues>
+56 error System Windows_NT 6.1.7601
+57 error command "C:\\Program Files\\nodejs\\\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "publish"
+58 error cwd C:\Users\jibrahim\Documents\GitHub\scraper
+59 error node -v v0.10.28
+60 error npm -v 1.4.9
+61 verbose exit [ 1, true ]
