@@ -3,8 +3,7 @@ var http 	= 	require('http'),
 	url 	= 	require('url'), 
 	request = 	require('request'), 
 	Q 		=	require('q'),
-	cheerio = 	require('cheerio'),
-	sizeOf	=	require('image-size');
+	cheerio = 	require('cheerio');
 
 Array.prototype.uniq = function() {
    var uniq = {}, arr = [];
