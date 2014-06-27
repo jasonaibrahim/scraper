@@ -15,12 +15,21 @@ Array.prototype.uniq = function() {
       uniq[this[i]] = 1;
    }
    return arr;
-}
+};
+Array.prototype.diff = function(list) {
+	var ret = [];
+	for(i in this) {
+		if(list.indexOf( this[i] ) > -1) {
+			ret.push(this[i]);
+		}
+	}
+	return ret;
+};
 
 function getProtocol(url) {
 	if(url.slice(0,5) == 'https') return https
 	if(url.slice(0,4) == 'http') return http
-}
+};
 
 module.exports.Scraper = function() {
 	var _this = this;
@@ -73,9 +82,10 @@ module.exports.Scraper = function() {
 		if(url && url.indexOf("//") == 0) { return 'http:' + url;}
 		if(url && url.match(httpregexp) && url.match(httpregexp)[0]) return url;
 	}
-	this.judge = function(finalists) {
+	this.judge = function(finalists, address) {
 		var promise = Q.defer();
 		var medalists = [];
+		var keywords = _this.parse(address);
 		for(var i=0; i<finalists.length; i++) {
 			medalists.push(finalists[i]);
 		}
@@ -117,12 +127,33 @@ module.exports.Scraper = function() {
 		}
 		return promise.promise;
 	}
+	this.parse = function(url) {
+		// break the url into as many distinct words as possible.
+		var wordreg = new RegExp(/^(http|https|www|com)/);
+		var words = url.split('/').filter(function(el){return( el != "")});
+		var parsed = [];
+		for(var i=0; i<words.length; i++) {
+			if(!words[i].match(wordreg)){
+				var subwords = words[i].split(".");
+				if(subwords.length > 0) {
+					for(var j=0; j<subwords.length; j++) {
+						if(!subwords[j].match(wordreg)) {
+							parsed.push(subwords[j]);
+						}
+					}
+				} else {
+					parsed.push(words[i]);
+				}
+			}
+		}
+		return parsed;
+	}
 	this.scrape = function(address) {
 		var promise = Q.defer();
 		if(address) {
 			_this.getImages(address).then(function(candidates) {
 				_this.narrow(candidates).then(function(finalists) {
-					_this.judge(finalists).then(function(medalists) {
+					_this.judge(finalists, address).then(function(medalists) {
 						promise.resolve(medalists);
 					});
 				});
@@ -132,4 +163,4 @@ module.exports.Scraper = function() {
 		}
 		return promise.promise;
 	}
-}
+};
