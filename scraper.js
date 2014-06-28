@@ -1,7 +1,7 @@
-var http 	= 	require('http'), 
+var http 	= 	require('http'),
 	https 	= 	require('https'),
-	url 	= 	require('url'), 
-	request = 	require('request'), 
+	url 	= 	require('url'),
+	request = 	require('request'),
 	Q 		=	require('q'),
 	cheerio = 	require('cheerio');
 
@@ -36,10 +36,10 @@ module.exports.Scraper = function() {
 	this.clean = function(candidates) {
 		var clean = [];
 		for(var i = 0; i < candidates.length; i++) {
-			if(	_this.httpmatch(candidates[i]) && 
-			(	_this.extmatch(candidates[i]) == 'jpg' 	|| 
-				_this.extmatch(candidates[i]) == 'png' 	|| 
-				_this.extmatch(candidates[i]) == 'gif'	)) 
+			if(	_this.httpmatch(candidates[i]) &&
+			(	_this.extmatch(candidates[i]) == 'jpg' 	||
+				_this.extmatch(candidates[i]) == 'png' 	||
+				_this.extmatch(candidates[i]) == 'gif'	))
 			{
 				clean.push(_this.httpmatch(candidates[i]));
 			}
@@ -108,10 +108,12 @@ module.exports.Scraper = function() {
 				url: candidates[i],
 				method: 'HEAD'
 			}, function(error, response, body) {
-				finalists.push({
-					url: response.request.href,
-					size: response.headers['content-length']
-				});
+				if(response) {
+					finalists.push({
+						url: response.request.href,
+						size: response.headers['content-length']
+					});
+				}
 				if(++seen == candidates.length) {
 					finalists = finalists.filter(_this.minSize);
 					finalists.sort(function(a,b) {
@@ -123,7 +125,7 @@ module.exports.Scraper = function() {
 					promise.resolve(finalists);
 				}
 			});
-			
+
 		}
 		return promise.promise;
 	}
