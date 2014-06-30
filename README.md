@@ -20,6 +20,7 @@ use
 example
 ------------
 	var http = require('http'), url = require('url'), scraper = require('scraper-js');
+	// send request to rest api e.g. http://localhost:1337?url=http://www.rollingstone.com
 	var server = http.createServer(function(req, res) {
 		var query = url.parse(req.url, true).query;
 		var address = query.url; // e.g http://www.rollingstone.com
