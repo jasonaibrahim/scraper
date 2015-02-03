@@ -31,16 +31,16 @@ module.exports.Scraper = function () {
 
     function clean (candidates) {
         // TODO use a regex for checking the extname
-        var clean = [], i;
+        var cleanCandidates = [], i;
         for (i in candidates) {
             if (httpmatch(candidates[i]) &&
                 (extmatch(candidates[i]) === 'jpg' ||
                     extmatch(candidates[i]) === 'png' ||
                     extmatch(candidates[i]) === 'gif')) {
-                clean.push(httpmatch(candidates[i]));
+                cleanCandidates.push(httpmatch(candidates[i]));
             }
         }
-        return _.uniq(clean);
+        return _.uniq(cleanCandidates);
     }
 
     function extmatch (path) {
