@@ -1,7 +1,4 @@
 # scraper-js
-[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/jasonaibrahim/scraper?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-![ScreenShot](https://raw.githubusercontent.com/jasonaibrahim/scraper/master/raw/510.jpg)
-
 overview
 -----------
 need thumbnails? scraper is a lightweight npm module designed to return high quality and highly relevant images from a source url fast. 
