@@ -1,4 +1,7 @@
 # scraper-js
+
+<img src="https://raw.githubusercontent.com/jasonaibrahim/scraper/master/raw/510.jpg" width="300">
+
 overview
 -----------
 need thumbnails? scraper is a lightweight npm module designed to return high quality and highly relevant images from a source url fast. 
