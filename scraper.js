@@ -1,34 +1,17 @@
-/*global require: true, module: true*/
+//  scraper-js 1.0.0
+//  http://github.com/jasonaibrahim/scraper
+//  (c) 2014-2015 Jason Ibrahim
+//  scraper may be freely distributed under the MIT license.
+
+// global require: true, module: true
+
 var http = require('http'),
     https = require('https'),
     url = require('url'),
     request = require('request'),
     Q = require('q'),
-    cheerio = require('cheerio');
-
-/** returns a new array with duplicates removed */
-Array.prototype.uniq = function () {
-    'use strict';
-    var uniq = {}, arr = [], i;
-    for (i = 0; i < this.length; i += 1) {
-        if (!uniq.hasOwnProperty(this[i])) {
-            arr.push(this[i]);
-            uniq[this[i]] = 1;
-        }
-    }
-    return arr;
-};
-/** returns an array that contains only the differences between this array and the one passed in */
-Array.prototype.diff = function (list) {
-    'use strict';
-    var diffs = [], i;
-    for (i = 0; i < this.length; i += 1) {
-        if (list.indexOf(this[i]) > -1) {
-            diffs.push(this[i]);
-        }
-    }
-    return diffs;
-};
+    cheerio = require('cheerio'),
+    _ = require('underscore');
 
 /** based on the url string passed in, return the proper node http module to use */
 var getProtocol = function (url) {
@@ -41,32 +24,34 @@ var getProtocol = function (url) {
 
 /** define the node module */
 module.exports.Scraper = function () {
+
     'use strict';
+
     var self = this;
 
-    this.clean = function (candidates) {
+    function clean (candidates) {
         // TODO use a regex for checking the extname
         var clean = [], i;
         for (i in candidates) {
-            if (self.httpmatch(candidates[i]) &&
-                (self.extmatch(candidates[i]) === 'jpg' ||
-                    self.extmatch(candidates[i]) === 'png' ||
-                    self.extmatch(candidates[i]) === 'gif')) {
-                clean.push(self.httpmatch(candidates[i]));
+            if (httpmatch(candidates[i]) &&
+                (extmatch(candidates[i]) === 'jpg' ||
+                    extmatch(candidates[i]) === 'png' ||
+                    extmatch(candidates[i]) === 'gif')) {
+                clean.push(httpmatch(candidates[i]));
             }
         }
-        return clean.uniq();
-    };
+        return _.uniq(clean);
+    }
 
-    this.extmatch = function (path) {
+    function extmatch (path) {
         if (!path) { return null; }
         var extRegex = new RegExp(/.+\.([^?]+)(\?|$)/);
         return path && path.match(extRegex) && path.match(extRegex)[1];
-    };
+    }
 
-    this.getImages = function (url) {
+    function getImages (url) {
         var promise = Q.defer(), candidates = [];
-        if (self.clean([url]).length > 0) {
+        if (clean([url]).length > 0) {
             promise.resolve([url]);
             return promise.promise;
         }
@@ -86,29 +71,30 @@ module.exports.Scraper = function () {
             }
         });
         return promise.promise;
-    };
+    }
 
-    this.httpmatch = function (url) {
+    function httpmatch (url) {
         var httpRegex = new RegExp(/^(\/\/|f|ht)tps?:\/\//i);
         if (url && url.indexOf("//") === 0) { return 'http:' + url; }
         if (url && url.match(httpRegex) && url.match(httpRegex)[0]) { return url; }
         return null;
-    };
+    }
 
-    this.judge = function (finalists, address) {
-        var promise = Q.defer(), medalists = [], keywords = self.parse(address), i;
+    function judge (finalists, address) {
+        var promise = Q.defer(), medalists = [], keywords = parse(address), i;
         for (i = 0; i < finalists.length; i += 1) {
             medalists.push(finalists[i]);
         }
         promise.resolve(medalists);
         return promise.promise;
-    };
+    }
 
-    this.minSize = function (finalist) {
+    // filter images that are smaller than 1000 bytes
+    function minsize (finalist) {
         return finalist.size > 1000;
-    };
+    }
 
-    this.narrow = function (candidates) {
+    function narrow (candidates) {
         var promise = Q.defer(), finalists = [], seen = 0, i, j;
         for (i = 0; i < candidates.length; i += 1) {
             request({url: candidates[i], method: 'HEAD'}, function (error, response) {
@@ -119,7 +105,7 @@ module.exports.Scraper = function () {
                     });
                 }
                 if ((seen += 1) === candidates.length) {
-                    finalists = finalists.filter(self.minSize);
+                    finalists = finalists.filter(minsize);
                     finalists.sort(function (a, b) {
                         return b.size - a.size;
                     });
@@ -132,10 +118,9 @@ module.exports.Scraper = function () {
 
         }
         return promise.promise;
-    };
-
-    this.parse = function (url) {
-        // break the url into as many distinct words as possible.
+    }
+    // break the url into as many distinct words as possible.
+    function parse (url) {
         var wordRegex = new RegExp(/^(http|https|www|com)/),
             words = url.split('/').filter(function (el) { return el !== ''; }),
             parsed = [],
@@ -157,21 +142,22 @@ module.exports.Scraper = function () {
             }
         }
         return parsed;
-    };
+    }
 
     this.scrape = function (address) {
-        var promise = Q.defer();
+        var deferred = Q.defer();
         if (address) {
-            self.getImages(address).then(function (candidates) {
-                self.narrow(candidates).then(function (finalists) {
-                    self.judge(finalists, address).then(function (medalists) {
-                        promise.resolve(medalists);
-                    });
-                });
-            });
-        } else {
-            promise.reject('Scraper cant scrape nil. Feed it a url in the params.');
+            getImages(address)
+                .then(function (candidates) { narrow(candidates)
+                .then(function (finalists) { judge(finalists, address)
+                .then(function (medalists) {
+                    deferred.resolve(medalists);
+                })
+            })
+        })}
+        else {
+            deferred.reject('Scraper cant scrape nil. Feed it a url in the params.');
         }
-        return promise.promise;
+        return deferred.promise;
     };
 };
