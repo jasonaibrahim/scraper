@@ -29,6 +29,7 @@ module.exports.Scraper = function () {
 
     var self = this;
 
+    // iterate through a list of candidate urls and return a set of only those which match jpg, png or gif
     function clean (candidates) {
         // TODO use a regex for checking the extname
         var cleanCandidates = [], i;
@@ -43,12 +44,14 @@ module.exports.Scraper = function () {
         return _.uniq(cleanCandidates);
     }
 
+    // check if the string passed in has a filename extension and return the extension
     function extmatch (path) {
         if (!path) { return null; }
         var extRegex = new RegExp(/.+\.([^?]+)(\?|$)/);
         return path && path.match(extRegex) && path.match(extRegex)[1];
     }
 
+    // given a url, return a deferred list of possible images found on that page
     function getImages (url) {
         var promise = Q.defer(), candidates = [];
         if (clean([url]).length > 0) {
@@ -64,7 +67,7 @@ module.exports.Scraper = function () {
                 for (i = 0; i < metatags.length; i += 1) {
                     candidates.push(metatags[i].attribs.content);
                 }
-                candidates = self.clean(candidates);
+                candidates = clean(candidates);
                 promise.resolve(candidates);
             } else {
                 promise.reject(new Error('Bad Request'));
@@ -73,6 +76,7 @@ module.exports.Scraper = function () {
         return promise.promise;
     }
 
+    // prefix a string with http: and/or return the string if it matches a valid url, otherwise return null
     function httpmatch (url) {
         var httpRegex = new RegExp(/^(\/\/|f|ht)tps?:\/\//i);
         if (url && url.indexOf("//") === 0) { return 'http:' + url; }
@@ -80,22 +84,23 @@ module.exports.Scraper = function () {
         return null;
     }
 
+    // this function is designed to further determine whether a list of candidate images are considered 'good'
+    // as of right now, these simply return the list passed in.
     function judge (finalists, address) {
-        var promise = Q.defer(), medalists = [], keywords = parse(address), i;
-        for (i = 0; i < finalists.length; i += 1) {
-            medalists.push(finalists[i]);
-        }
-        promise.resolve(medalists);
+        var promise = Q.defer();
+        // TODO return only the best images in the list of finalists candidates
+        promise.resolve(finalists);
         return promise.promise;
     }
 
-    // filter images that are smaller than 1000 bytes
-    function minsize (finalist) {
-        return finalist.size > 1000;
-    }
-
+    // from a list of candidate images, filter those below a certain size threshold.
     function narrow (candidates) {
         var promise = Q.defer(), finalists = [], seen = 0, i, j;
+        // helper to filter images that are smaller than 1000 bytes
+        function minsize (finalist) {
+            return finalist.size > 1000;
+        }
+
         for (i = 0; i < candidates.length; i += 1) {
             request({url: candidates[i], method: 'HEAD'}, function (error, response) {
                 if (response) {
@@ -119,6 +124,7 @@ module.exports.Scraper = function () {
         }
         return promise.promise;
     }
+
     // break the url into as many distinct words as possible.
     function parse (url) {
         var wordRegex = new RegExp(/^(http|https|www|com)/),
@@ -144,6 +150,7 @@ module.exports.Scraper = function () {
         return parsed;
     }
 
+    // the scraper api. takes in a page url, returns a deferred list of image urls.
     this.scrape = function (address) {
         var deferred = Q.defer();
         if (address) {
