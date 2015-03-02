@@ -20,21 +20,56 @@ use
 
 example
 ------------
-	var http = require('http'), url = require('url'), scraper = require('scraper-js');
-	// send request with url params to rest api e.g. http://localhost:1337?url=http://www.rollingstone.com
-	var server = http.createServer(function(req, res) {
-		var query = url.parse(req.url, true).query;
-		var address = query.url; // e.g http://www.rollingstone.com
-		var scrapy = new scraper.Scraper();
-		
-		scrapy.scrape(address).then(function(thumbs) {
-			res.end(JSON.stringify(thumbs));
-		}, function(error) {
-			res.writeHead(404);
-			res.end(error);
-		});
-		// result: ["http://assets-s3.rollingstone.com/images/logo-1200x630.jpg","http://assets-s3.rollingstone.com/assets/images/list_container/45-best-albums-of-2014-so-far-20140626/20140623-skrillex-624-1403629273.jpg","http://assets-s3.rollingstone.com/assets/images/story/beyonce-and-jay-zs-on-the-run-tour-opener-a-collaborative-spectacle-20140626/beyonce-624-1403794830.jpg"]
-	}).listen(8080);
+//
+// scraperapp
+// 
+// thumbnail scraping http server. usage is as follows:
+// get the address to scrape from the parameters passed to the url
+// e.g. localhost:1337/scrape?url=http://www.reddit.com; address to scrape => http://www.reddit.com
+// response will be an array of image urls => [http://image1.jpg, http://image2.jpg, ...]
+//
+// authored by Jason Ibrahim
+// copyright (c) 2015 Jason Ibrahim
+// 
+
+// initialize dependencies
+var http =	require('http'),
+    https =	require('https'),
+    url = require('url'),
+    Scraper = require('scraper-js');
+    
+// set the port
+var port = process.env.port || 80;
+
+// create the server
+var server = http.createServer(function (req, res) {
+    
+	var scrapereg = new RegExp(/^(\/scrape)/),
+        query = url.parse(req.url, true).query,
+        address = query.url,
+        scraper = new Scraper.Scraper();
+	// only listen for api calls to /scrape
+	if(!req.url.match(scrapereg)) {
+		res.writeHead(404);
+		res.end('Did you mean /scrape?');
+	}
+	res.writeHead(200, {'Access-Control-Allow-Origin': "*"});
+    // scraper returns a promise that will resolve an array of image urls
+	scraper.scrape(address).then(function (images) {
+		res.end(JSON.stringify(images));
+	}, function(error) {
+		res.writeHead(404);
+		res.end(JSON.stringify([error]));
+	});
+	// if we don't get at least one thumbnail within 8 seconds, quit
+	setTimeout(function() {
+        res.writeHead(408);
+		res.end(JSON.stringify(['timeout.']));
+	}, 8000);
+    
+}).listen(port);
+
+console.log('Scraping on', port);
 
 details
 ------------
