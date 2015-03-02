@@ -9,17 +9,17 @@ need thumbnails? scraper is a lightweight npm module designed to return high qua
 installation
 ------------  
 ```bash
-	npm install scraper-js
+npm install scraper-js
 ```
 
 use
 ------------
 ```javascript
-	var Scraper = require('scraper-js').Scraper();
-	var scraper = new Scraper.Scraper();
-	scraper.scrape(address).then(function (thumbs) {
-		console.log(thumbs);
-	});
+var Scraper = require('scraper-js').Scraper();
+var scraper = new Scraper.Scraper();
+scraper.scrape(address).then(function (thumbs) {
+	console.log(thumbs);
+});
 ```
 
 example node server
