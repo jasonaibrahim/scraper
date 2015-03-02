@@ -20,6 +20,7 @@ use
 
 example
 ------------
+```javascript
 //
 // scraperapp
 // 
@@ -70,6 +71,7 @@ var server = http.createServer(function (req, res) {
 }).listen(port);
 
 console.log('Scraping on', port);
+```
 
 details
 ------------
