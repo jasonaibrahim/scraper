@@ -12,13 +12,13 @@ installation
 
 use
 ------------
-	var scraper = require('scraper-js');
-	var scrapy = new scraper.Scraper();
-	scrapy.scrape(address).then(function(thumbs) {
+	var Scraper = require('scraper-js').Scraper();
+	var scraper = new Scraper.Scraper();
+	scraper.scrape(address).then(function (thumbs) {
 		console.log(thumbs);
 	});
 
-example
+example node server
 ------------
 ```javascript
 //
@@ -76,3 +76,7 @@ console.log('Scraping on', port);
 details
 ------------
 scrape() will return a promise, that when fulfilled, will return an array of candidate thumbnails- in the form of url's- in descending order of rating; i.e. the best candidate thumbnail will appear first. 
+
+contributions
+------------
+improvements, features, bug fixes and any other type of contribution are welcome to this project. please feel free to extend what has been started here and if it solves a particular problem, please submit a pull request so we can share it with others.
