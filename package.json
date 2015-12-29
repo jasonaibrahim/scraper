@@ -31,7 +31,7 @@
     "url": "https://github.com/jasonaibrahim/scraper/issues"
   },
   "homepage": "https://github.com/jasonaibrahim/scraper",
-  "devDependencies": {
+  "dependencies": {
     "cheerio": "^0.18.0",
     "http": "0.0.0",
     "q": "^1.1.2",
