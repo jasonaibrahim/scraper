@@ -15,7 +15,7 @@ npm install scraper-js
 use
 ------------
 ```javascript
-var Scraper = require('scraper-js').Scraper();
+var Scraper = require('scraper-js').Scraper;
 var scraper = new Scraper.Scraper();
 scraper.scrape(address).then(function (thumbs) {
 	console.log(thumbs);
