@@ -1,0 +1,6 @@
+{
+  "name": "@scraper-js/core",
+  "scripts": {
+    "test": "jest"
+  }
+}

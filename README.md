@@ -1,6 +1,6 @@
 # scraper-js
 
-<img src="https://raw.githubusercontent.com/jasonaibrahim/scraper/master/raw/510.jpg" width="300">
+<img src="https://raw.githubusercontent.com/jasonaibrahim/scraper/master/.github/raw/510.jpg" width="300">
 
 overview
 -----------
