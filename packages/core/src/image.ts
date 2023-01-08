@@ -1,28 +1,46 @@
-import { ImageMetadata, ImageSource, ParseResult, RankedImage } from "./types";
+import { ImageMetadata, ImageSource, ParseResult, RankedImage } from './types';
 
 export interface ImageExtractOptions {
   rankImage?: (imageMetadata: ImageMetadata) => number;
-  mode?: "fast" | "hq";
 }
 
 const defaultRankAlgorithm: ImageExtractOptions["rankImage"] = (
   imageMetadata
 ) => {
   /**
-   * Downrank images with no `src` attribute
+   * Immediately down rank images with no `src` attribute; this is a failure condition
    */
   if (!imageMetadata.src) {
-    return -1;
+    return -1
   }
 
-  return 0;
+  let score = 0;
+
+  /**
+   * Weigh image based on source, with open graph images ranking highest
+   */
+  switch (imageMetadata.sourceType) {
+    case ImageSource.OpenGraph:
+      score += 2;
+      break
+    case ImageSource.LinkedData:
+      score += 1;
+      break;
+  }
+
+  /**
+   * Weigh image based on dimensions
+   */
+  if (imageMetadata.width && imageMetadata.height) {
+    score += 1;
+  }
+
+  return score;
 };
 
 export function featureImageFromParseResult(
   result: ParseResult,
-  options: ImageExtractOptions = {
-    mode: "hq",
-  }
+  options: ImageExtractOptions = {}
 ): RankedImage | null {
   return imagesFromParseResult(result, options).shift() ?? null;
 }

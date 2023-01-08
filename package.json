@@ -4,7 +4,7 @@
   "description": "From the Bay to LA, scraper will collect all of the images from the url you tell it to and return a list of the images that best represent the site.",
   "scripts": {
     "build": "turbo run build",
-    "test": "jest"
+    "test": "turbo run test"
   },
   "repository": {
     "type": "git",

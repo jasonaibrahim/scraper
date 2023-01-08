@@ -1,6 +1,6 @@
 import { CheerioAPI } from "cheerio";
 import { Thing } from "schema-dts";
-import scrapeOpenGraphData from "open-graph-scraper";
+import type scrapeOpenGraphData from "open-graph-scraper";
 
 export interface ParseResult {
   linkedData: Thing | null;

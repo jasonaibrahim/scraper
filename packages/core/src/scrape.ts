@@ -5,7 +5,7 @@ import { featureImageFromParseResult, ImageExtractOptions, imagesFromParseResult
 import { parse, ParseOptions } from './parse';
 import { RankedImage } from './types';
 
-export type ScrapeOptions = Pick<ImageExtractOptions, "rankImage" | "mode"> &
+export type ScrapeOptions = Pick<ImageExtractOptions, "rankImage"> &
   Pick<ParseOptions, "parser"> & {
     client: AxiosInstance;
   };
@@ -38,11 +38,9 @@ export async function scrape(
   return {
     featureImage: featureImageFromParseResult(result, {
       rankImage: options.rankImage,
-      mode: options.mode,
     }),
     images: imagesFromParseResult(result, {
       rankImage: options.rankImage,
-      mode: options.mode,
     }),
     html: result.document.html(),
     linkedData: result.linkedData,

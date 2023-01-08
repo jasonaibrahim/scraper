@@ -1,27 +1,24 @@
-import cheerio, { AnyNode, CheerioAPI, CheerioOptions } from 'cheerio';
-import scrapeOpenGraphData from 'open-graph-scraper';
-import { ParseResult } from './types';
+import cheerio, { CheerioAPI } from "cheerio";
+import scrapeOpenGraphData from "open-graph-scraper-lite";
+import { ParseResult } from "./types";
 
 export interface ParseOptions {
-  parser?: (
-    content: string | AnyNode | AnyNode[] | Buffer,
-    options?: CheerioOptions | null,
-    isDocument?: boolean
-  ) => CheerioAPI;
+  parser?: CheerioAPI;
 }
 export async function parse(
   content: string,
-  { parser = cheerio.load }: ParseOptions
+  { parser = cheerio }: ParseOptions
 ): Promise<ParseResult> {
   if (!content) {
     throw new Error("Failed to retrieve page content");
   }
 
-  const $ = parser!(content);
+  const $ = parser.load(content);
 
   /**
    * Scrape OpenGraph data from page html
    */
+  // TODO: it would be nice to remove the library "open-graph-scraper-lite" - it would allow us to remove the `process`, `open-graph-scraper`, and `buffer` packages from the codebase
   const { result: openGraph } = await scrapeOpenGraphData({
     url: "",
     html: content,

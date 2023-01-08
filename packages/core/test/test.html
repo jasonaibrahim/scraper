@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>scraper.js browser test</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <script src="../dist/scraper.js"></script>
+
+    <div class="container-fluid">
+      <div class="form-floating mb-3">
+        <input
+          type="text"
+          id="url"
+          class="form-control"
+          placeholder="Enter URL to scrape"
+          value="https://enable-cors.org/"
+        />
+        <label for="url">URL to scrape</label>
+      </div>
+      <button type="button" class="btn btn-primary" id="submit" type="submit">
+        Scrape
+      </button>
+      <hr />
+
+      <p>Result</p>
+      <div class="row">
+        <div class="col-sm-4 col-sm-offset-4">
+          <div
+            id="result"
+            style="background: lightblue; padding: 8px; display: none"
+          ></div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      let resultText = "";
+      let resultElement = document.createElement("code");
+
+      document
+        .getElementById("submit")
+        .addEventListener("click", async function () {
+          const url = document.getElementById("url").value;
+          try {
+            const result = await scraper.scrape(url);
+            resultText = JSON.stringify(result);
+          } catch (err) {
+            resultElement.style.color = "red";
+            resultText = err.message;
+          } finally {
+            resultElement.appendChild(document.createTextNode(resultText));
+
+            const resultContainer = document.getElementById("result");
+            resultContainer.style.display = "initial";
+            resultContainer.appendChild(resultElement);
+          }
+        });
+    </script>
+  </body>
+</html>
