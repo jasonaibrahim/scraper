@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
     "esModuleInterop": true,
-    "module": "nodenext",
+    "module": "commonjs",
     "strict": true,
-    "target": "esnext"
+    "target": "esnext",
+    "allowSyntheticDefaultImports": true,
   },
-  "include": ["./**/*.ts"],
+  "include": ["./**/*.ts"]
 }
