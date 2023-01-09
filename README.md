@@ -38,6 +38,8 @@ export interface ScrapeResult {
 }
 ```
 
+The recommended version of node.js is `18`.
+
 ## example node server
 
 ```javascript

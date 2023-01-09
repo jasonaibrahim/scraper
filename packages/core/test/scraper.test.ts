@@ -54,7 +54,7 @@ describe("errors", () => {
       "",
       "htp://example.com",
       "fasdfasdf",
-      // @ts-expect-error
+      // @ts-ignore
       null,
       // @ts-expect-error
       () => {
