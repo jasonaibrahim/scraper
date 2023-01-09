@@ -4,6 +4,7 @@
     "test": "jest",
     "build": "tsc"
   },
+  "main": "dist/index.js",
   "dependencies": {
     "axios": "^1.2.2",
     "cheerio": "1.0.0-rc.12",
