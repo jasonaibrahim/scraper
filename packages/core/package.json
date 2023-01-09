@@ -2,7 +2,7 @@
   "name": "@scraper-js/core",
   "scripts": {
     "test": "jest",
-    "build": "tsc"
+    "build": "rm -rf dist; tsc"
   },
   "main": "dist/index.js",
   "dependencies": {
